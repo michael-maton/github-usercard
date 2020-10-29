@@ -10,12 +10,18 @@ import axios from 'axios';
   // .this((res) => {
   //   console.log(res);
   // })
-axios
-  .get('https://api.github.com/users/michael-maton')
-  .then((res) => {
-    let myCard = cardMaker(res);
-    cards.appendChild(myCard);
-  })
+// axios
+//   .get('https://api.github.com/users/michael-maton')
+//   .then((res) => {
+//     let myCard = cardMaker(res);
+//     cards.appendChild(myCard);
+//   })
+//   .catch((error) => {
+//     console.log('error', error);
+//   })
+//   .finally(() => {
+//     console.log('Done!');
+//   })
 
 
 /*
@@ -44,7 +50,29 @@ axios
     user, and adding that card to the DOM.
 */
 
-const followersArray = [];
+const followersArray = [
+  'https://api.github.com/users/tetondan',
+  'https://api.github.com/users/dustinmyers',
+  'https://api.github.com/users/justsml',
+  'https://api.github.com/users/luishrd',
+  'https://api.github.com/users/michael-maton',
+  'https://api.github.com/users/bigknell'
+];
+
+followersArray.forEach((item) => {
+  axios
+  .get(item)
+  .then((res) => {
+    let newCard = cardMaker(res);
+    cards.appendChild(newCard);
+  })
+  .catch((error) => {
+    console.log(error);
+  })
+  .finally(() => {
+    console.log('Done!');
+  })
+});
 
 /*
   STEP 3: Create a function that accepts a single object as its only argument.
